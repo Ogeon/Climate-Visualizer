@@ -21,15 +21,15 @@ var height = 1;
 var scale = 1;
 
 window.onload = function() {
-	mainCanvas = document.getElementById("mainCanvas");
-	camera.setLatitude(-Math.PI * 45/180);
-	camera.setDistance(2);
+	window.mainCanvas = document.getElementById("mainCanvas");
+	window.camera.setLatitude(-Math.PI * 45/180);
+	window.camera.setDistance(2);
 
-	if(mainCanvas.getContext) {
-		mainContext = mainCanvas.getContext("2d");
-		onresize();
-		hookEvent(mainCanvas, "mousewheel", scroll);
-		getData();
+	if(window.mainCanvas.getContext) {
+		window.mainContext = mainCanvas.getContext("2d");
+		window.onresize();
+		window.hookEvent(mainCanvas, "mousewheel", scroll);
+		window.getData();
 		//step();
 		//canvasLoop = setInterval(draw, 1000/30);
 		setInterval(logic, 1000/30);
@@ -38,91 +38,90 @@ window.onload = function() {
 }
 
 window.onresize = function() {
-	width = mainCanvas.parentNode.clientWidth;
-	height = mainCanvas.parentNode.clientHeight;
-	mainCanvas.width = width;
-	mainCanvas.height = height;
-	mainContext.translate(width/2, height/2);
-	scale = Math.min(width/2, height/2)/Math.tan(Math.PI*30/180);
-	draw();
+	window.width = mainCanvas.parentNode.clientWidth;
+	window.height = mainCanvas.parentNode.clientHeight;
+	window.mainCanvas.width = width;
+	window.mainCanvas.height = height;
+	window.mainContext.translate(width/2, height/2);
+	window.scale = Math.min(width/2, height/2)/Math.tan(Math.PI*30/180);
+	window.draw();
 }
 
 window.onkeydown = function(event) {
 	switch(event.keyCode) {
 	case 65: //A
 	case 37: //Left arrow
-		camera.setLongitude(camera.getLongitude() - .05);
-		cameraChanged = true;
+		window.camera.setLongitude(window.camera.getLongitude() - .05);
+		window.cameraChanged = true;
 		break;
 
 	case 68: //D
 	case 39: //Right arrow
-		camera.setLongitude(camera.getLongitude() + .05);
-		cameraChanged = true;
+		window.camera.setLongitude(window.camera.getLongitude() + .05);
+		window.cameraChanged = true;
 		break;
 
 	case 87: //W
 	case 38: //Up arrow
-		var lat = camera.getLatitude();
+		var lat = window.camera.getLatitude();
 		if(lat < 0) {
-			camera.setLatitude(lat + .05);
-			cameraChanged = true;
+			window.camera.setLatitude(lat + .05);
+			window.cameraChanged = true;
 		}
 		break;
 
 	case 83: //S
 	case 40: //Down arrow
-		var lat = camera.getLatitude();
+		var lat = window.camera.getLatitude();
 		if(lat > - Math.PI/2) {
-			camera.setLatitude(lat - .05);
-			cameraChanged = true;
+			window.camera.setLatitude(lat - .05);
+			window.cameraChanged = true;
 		}
 		break;
 
 	case 107: //Numpad+
-		cameraDistance -= .1;
-		camera.setDistance(Math.pow(2, cameraDistance));
-		cameraChanged = true;
+		window.cameraDistance -= .1;
+		window.camera.setDistance(Math.pow(2, window.cameraDistance));
+		window.cameraChanged = true;
 		break;
 
 	case 109: //Numpad-
-		cameraDistance += .1;
-		camera.setDistance(Math.pow(2, cameraDistance));
-		cameraChanged = true;
+		window.cameraDistance += .1;
+		window.camera.setDistance(Math.pow(2, window.cameraDistance));
+		window.cameraChanged = true;
 		break;
 	}
 }
 
 function getData() {
-	
     // Mozilla/Safari
     if (window.XMLHttpRequest) {
-        xmlHttpReq = new XMLHttpRequest();
+        window.xmlHttpReq = new XMLHttpRequest();
     }
     // IE
     else if (window.ActiveXObject) {
-        xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+        window.xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    xmlHttpReq.open('POST', "data.php");
-    xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xmlHttpReq.onreadystatechange = function() {
-        if (xmlHttpReq.readyState == 4) {
+    window.xmlHttpReq.open('POST', "data.php");
+    window.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    window.xmlHttpReq.onreadystatechange = function() {
+        if (window.xmlHttpReq.readyState == 4) {
         	clearInterval(streamLoop);
-            checkStream();
+            window.checkStream();
         }
     }
-    xmlHttpReq.send(null);
+    window.xmlHttpReq.send(null);
 
-    streamLoop = setInterval(checkStream, 1000/10);
+    window.streamLoop = setInterval(window.checkStream, 1000/10);
 }
 
 function checkStream() {
-	var newIndex = xmlHttpReq.responseText.lastIndexOf(":");
+	var newIndex = window.xmlHttpReq.responseText.lastIndexOf(":");
 	
-	if(newIndex > streamPosition) {
-		var substr = xmlHttpReq.responseText.substring(streamPosition, newIndex);
-		streamPosition = newIndex+1;
-		getPoints(substr);
+	if(newIndex > window.streamPosition) {
+		var substr = window.xmlHttpReq.responseText.substring(window.streamPosition, newIndex);
+		window.streamPosition = newIndex+1;
+		window.getPoints(substr);
 	}
 }
 
@@ -149,19 +148,14 @@ function newPoint(data) {
 	var x = parseFloat(data[0]);
 	var y = parseFloat(data[1]);
 	var z = parseFloat(data[2]);
-	point.getDrawable().setPosition($V([x, y, z]));
+	point.setPosition($V([x, y, z]));
 
 	var r = parseInt(data[3]);
 	var g = parseInt(data[4]);
 	var b = parseInt(data[5]);
-	point.getDrawable().setColor([r, g, b, 1]);
+	point.setColor([r, g, b, 1]);
 
 	points.push(point);
-}
-
-function step() {
-	logic();
-	draw();
 }
 
 function logic() {
@@ -172,10 +166,8 @@ function logic() {
 	*/
 
 	if(cameraChanged) {
-		var drawable;
 		for(var i in points) {
-			drawable = points[i].getDrawable();
-			drawable.setScreenPosition(camera.transform(drawable.getPosition()));
+			points[i].setScreenPosition(camera.transform(points[i].getPosition()));
 		}
 		points.sort(DataPoint.compare);
 		cameraChanged = false;
@@ -189,21 +181,9 @@ function draw() {
 
 
 	for(var i = 0; i < points.length; i++){
-		points[i].getDrawable().draw(mainContext);
+		if(points[i].viewPosition.e(3) > 0)
+			points[i].draw(mainContext);
 	}
-}
-
-function perspective(vector) {
-	var newVector = new Array(3);
-
-	if(vector[2] > 0) {
-		newVector[0] = vector[0] / vector[2];
-		newVector[1] = vector[1] / vector[2];
-		newVector[2] = vector[2];
-		return newVector;
-	}
-
-	return [0, 0, 0];
 }
 
 

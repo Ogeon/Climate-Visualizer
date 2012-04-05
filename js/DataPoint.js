@@ -1,7 +1,6 @@
 function DataPoint() {
-	this.drawable = new Drawable();
 
-	this.drawable.draw = function(context) {
+	this.draw = function(context) {
 		var point = this.viewPosition;
 		point = point.x(scale);
 		var size = 2*scale/point.e(3);
@@ -26,9 +25,9 @@ function DataPoint() {
 		return this.drawable;
 	}
 
-	
 }
 
-DataPoint.compare = function(a, b) {
-	return Drawable.compare(a.getDrawable(), b.getDrawable());
-}
+DataPoint.compare = Drawable.compare;
+
+DataPoint.prototype = new Drawable();
+DataPoint.prototype.contructor = DataPoint;
