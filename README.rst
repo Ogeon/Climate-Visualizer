@@ -12,3 +12,5 @@ If you want to change the dataset you just have to change the temps.txt to an
 other file with the same syntax. For details on the syntax see `the file format
 information from SMHI <http://www.smhi.se/en/2.575/Climate-scenarios/climate-scenarios-1.6628>`_
 and for details about the dataset see `climate scenario data download from SMHI <http://www.smhi.se/en/2.575/Climate-scenarios/climate-scenarios-1.6629>`_
+
+It requires a server with PHP and the PHP extension GD for hosting. The only requirement on the client side is a browser with support for HTML5 canvas and JavaScript.
