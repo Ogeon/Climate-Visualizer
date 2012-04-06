@@ -29,6 +29,19 @@ function toRad($deg) {
 	return 2*pi()*$deg/360;
 }
 
+function toCartesian($lat, $lon, $latShift) {
+	$x = cos($lon)*sin($lat);
+	$y = sin($lon)*sin($lat);
+	$z = cos($lat);
+
+	$a = toRad(90 - $latShift);
+	$vector = array();
+	$vector["x"] = $x;
+	$vector["y"] = $y*cos($a) - $z*sin($a);
+	$vector["z"] = $y*sin($a) + $z*cos($a);
+	return $vector;
+}
+
 header('Content-type: application/octet-stream');
 
 ob_start();
@@ -36,22 +49,42 @@ set_time_limit(0);
 
 $file = fopen("data/temps.txt", "r");
 
-$centerPoints = array();
-$centerStatus = 0;
+$regions = array();
+$readStatus = 0;
 
-while(!feof($file) && $centerStatus < 2) {
+while(!feof($file) && $readStatus < 6) {
 	$parts = explode(" ", fgets($file));
 
 	$label = trim($parts[0]);
 
 	if($label == "CPregLon") {
-		$centerStatus++;
-		$centerPoints = loadIntoArray($centerPoints, "Lon", $parts);
+		$readStatus++;
+		$regions = loadIntoArray($regions, "Nlon", $parts);
 	}
 
 	if($label == "CPregLat") {
-		$centerStatus++;
-		$centerPoints = loadIntoArray($centerPoints, "Lat", $parts);
+		$readStatus++;
+		$regions = loadIntoArray($regions, "Nlat", $parts);
+	}
+
+	if($label == "ULregLon") {
+		$readStatus++;
+		$regions = loadIntoArray($regions, "ULlon", $parts);
+	}
+
+	if($label == "ULregLat") {
+		$readStatus++;
+		$regions = loadIntoArray($regions, "ULlat", $parts);
+	}
+
+	if($label == "URregLon") {
+		$readStatus++;
+		$regions = loadIntoArray($regions, "URlon", $parts);
+	}
+
+	if($label == "URregLat") {
+		$readStatus++;
+		$regions = loadIntoArray($regions, "URlat", $parts);
 	}
 	
 }
@@ -59,15 +92,15 @@ while(!feof($file) && $centerStatus < 2) {
 $limitsLon = array(INF, -INF, 0);
 $limitsLat = array(INF, -INF, 0);
 
-foreach ($centerPoints as $key => $value) {
+foreach ($regions as $key => $value) {
 	//echo "<p>Point $key:<br/>";
-	$limitsLon[0] = min($limitsLon[0], $value["Lon"]);
-	$limitsLon[1] = max($limitsLon[1], $value["Lon"]);
-	$limitsLon[2] += $value["Lon"];
+	$limitsLon[0] = min($limitsLon[0], $value["Nlon"]);
+	$limitsLon[1] = max($limitsLon[1], $value["Nlon"]);
+	$limitsLon[2] += $value["Nlon"];
 
-	$limitsLat[0] = min($limitsLat[0], $value["Lat"]);
-	$limitsLat[1] = max($limitsLat[1], $value["Lat"]);
-	$limitsLat[2] += $value["Lat"];
+	$limitsLat[0] = min($limitsLat[0], $value["Nlat"]);
+	$limitsLat[1] = max($limitsLat[1], $value["Nlat"]);
+	$limitsLat[2] += $value["Nlat"];
 
 	/*foreach ($value as $key => $value) {
 		echo "&nbsp;&nbsp;&nbsp;$key => $value<br/>";
@@ -75,8 +108,8 @@ foreach ($centerPoints as $key => $value) {
 	echo "</p>";*/
 }
 
-$limitsLon[2] /= sizeof($centerPoints);
-$limitsLat[2] /= sizeof($centerPoints);
+$limitsLon[2] /= sizeof($regions);
+$limitsLat[2] /= sizeof($regions);
 
 /*echo "<p>Min Lon: ".$limitsLon[0]."<br/>Max Lon: ".$limitsLon[1]."<br/>Mean Lon:".$limitsLon[2]."</p>";
 echo "<p>Min Lat: ".$limitsLat[0]."<br/>Max Lat: ".$limitsLat[1]."<br/>Mean Lat:".$limitsLat[2]."</p>";
@@ -84,35 +117,50 @@ echo "<p>Min Lat: ".$limitsLat[0]."<br/>Max Lat: ".$limitsLat[1]."<br/>Mean Lat:
 echo "<br />";*/
 $meanZ = 0;
 $maxZ = 0;
-foreach ($centerPoints as $i => $value) {
-	$lon = toRad($value["Lon"] - $limitsLon[2] - 90);
-	$lat = toRad($value["Lat"] + 90);
+foreach ($regions as $i => $value) {
+	//Normal
+	$lon = toRad($value["Nlon"] - $limitsLon[2] - 90);
+	$lat = toRad($value["Nlat"] + 90);
+	$regions[$i]["N"] = toCartesian($lat, $lon, $limitsLat[2]);
 
-	$x = cos($lon)*sin($lat);
-	$y = sin($lon)*sin($lat);
-	$z = cos($lat);
+	//Upper left
+	$lon = toRad($value["ULlon"] - $limitsLon[2] - 90);
+	$lat = toRad($value["ULlat"] + 90);
+	$regions[$i]["UL"] = toCartesian($lat, $lon, $limitsLat[2]);
 
-	$a = toRad(90 - $limitsLat[2]);
-	$centerPoints[$i]["x"] = $x;
-	$centerPoints[$i]["y"] = $y*cos($a) - $z*sin($a);
-	$centerPoints[$i]["z"] = $y*sin($a) + $z*cos($a);
+	//Upper right
+	$lon = toRad($value["URlon"] - $limitsLon[2] - 90);
+	$lat = toRad($value["URlat"] + 90);
+	$regions[$i]["UR"] = toCartesian($lat, $lon, $limitsLat[2]);
 
 	//$meanZ += $centerPoints[$i]["z"];
-	$maxZ = min($maxZ, $centerPoints[$i]["z"]);
+	$maxZ = min($maxZ, $regions[$i]["N"]["z"]);
 }
 //$meanZ /= sizeof($centerPoints);
 
 $texture = imagecreatefromjpeg("data/earth.jpg");
 $width = imagesx($texture);
 $height = imagesy($texture);
-foreach ($centerPoints as $value) {
-	$texX = $width*$value["Lon"]/360 + $width/2;
-	$texY = -$height*$value["Lat"]/180 + $height/2;
+foreach ($regions as $value) {
+	$texX = $width*$value["Nlon"]/360 + $width/2;
+	$texY = -$height*$value["Nlat"]/180 + $height/2;
 	$color = imagecolorat($texture, $texX, $texY);
 
-	echo ($value["x"]).";";
-	echo (-$value["y"]).";";
-	echo ($value["z"]-$maxZ).";";
+	//normals
+	echo ($value["N"]["x"]).";";
+	echo (-$value["N"]["y"]).";";
+	echo ($value["N"]["z"]).";";
+
+	//upper left
+	echo ($value["UL"]["x"]).";";
+	echo (-$value["UL"]["y"]).";";
+	echo ($value["UL"]["z"]-$maxZ).";";
+
+	//upper right
+	echo ($value["UR"]["x"]).";";
+	echo (-$value["UR"]["y"]).";";
+	echo ($value["UR"]["z"]-$maxZ).";";
+
 	echo (($color >> 16) & 0xFF).";";
 	echo (($color >> 8) & 0xFF).";";
 	echo ($color & 0xFF).":";

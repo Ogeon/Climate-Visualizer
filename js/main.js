@@ -1,3 +1,11 @@
+var startX = 0;            // mouse starting positions
+var startY = 0;
+var offsetX = 0;           // current element offset
+var offsetY = 0;
+var dragElement;           // needs to be passed from OnMouseDown to OnMouseMove
+var oldZIndex = 0;         // we temporarily increase the z-index during drag
+//var debug = $('debug');    // makes life easier
+
 var canvasLoop = null;
 var mainCanvas = null;
 var mainContext = null;
@@ -23,7 +31,7 @@ var scale = 1;
 window.onload = function() {
 	window.mainCanvas = document.getElementById("mainCanvas");
 	window.camera.setLatitude(-Math.PI * 45/180);
-	window.camera.setDistance(2);
+	window.camera.setDistance(Math.pow(2, cameraDistance));
 
 	if(window.mainCanvas.getContext) {
 		window.mainContext = mainCanvas.getContext("2d");
@@ -36,6 +44,8 @@ window.onload = function() {
 		//recalculatePerspective();
 	}
 }
+
+InitDragDrop();
 
 window.onresize = function() {
 	window.width = mainCanvas.parentNode.clientWidth;
@@ -145,15 +155,32 @@ function getPoints(text) {
 function newPoint(data) {
 	var point = new DataPoint();
 
-	var x = parseFloat(data[0]);
-	var y = parseFloat(data[1]);
-	var z = parseFloat(data[2]);
-	point.setPosition($V([x, y, z]));
+	var normal = $V([
+						parseFloat(data[0]),
+						parseFloat(data[1]),
+						parseFloat(data[2])
+					]);
+
+	var polygon = 	[
+						$V([
+							parseFloat(data[3]),
+							parseFloat(data[4]),
+							parseFloat(data[5])
+						]),
+						$V([
+							parseFloat(data[6]),
+							parseFloat(data[7]),
+							parseFloat(data[8])
+						]),
+						normal
+					];
+
+	point.polygon = polygon;
 
 	var r = parseInt(data[3]);
 	var g = parseInt(data[4]);
 	var b = parseInt(data[5]);
-	point.setColor([r, g, b, 1]);
+	point.color = [r, g, b];
 
 	points.push(point);
 }
@@ -167,7 +194,7 @@ function logic() {
 
 	if(cameraChanged) {
 		for(var i in points) {
-			points[i].setScreenPosition(camera.transform(points[i].getPosition()));
+			camera.transform(points[i]);
 		}
 		points.sort(DataPoint.compare);
 		cameraChanged = false;
@@ -181,7 +208,7 @@ function draw() {
 
 
 	for(var i = 0; i < points.length; i++){
-		if(points[i].viewPosition.e(3) > 0)
+		if(points[i].meanDepth > 0)
 			points[i].draw(mainContext);
 	}
 }
@@ -226,4 +253,116 @@ function scroll(e) {
 	
 	camera.setDistance(Math.pow(2, cameraDistance));
 	cameraChanged = true;
+}
+
+function OnMouseDown(e)
+{
+    // IE is retarded and doesn't pass the event object
+    if (e == null) 
+        e = window.event; 
+    
+    // IE uses srcElement, others use target
+    var target = e.target != null ? e.target : e.srcElement;
+    
+    /*debug.innerHTML = target.className == 'drag' 
+        ? 'draggable element clicked' 
+        : 'NON-draggable element clicked';*/
+
+    // for IE, left click == 1
+    // for Firefox, left click == 0
+    if ((e.button == 1 && window.event != null || 
+        e.button == 0) && 
+        target.className == 'drag')
+    {
+        // grab the mouse position
+        startX = e.clientX;
+        startY = e.clientY;
+        
+        // grab the clicked element's position
+        offsetX = ExtractNumber(target.style.left);
+        offsetY = ExtractNumber(target.style.top);
+        
+        // bring the clicked element to the front while it is being dragged
+        oldZIndex = target.style.zIndex;
+        target.style.zIndex = 10000;
+        
+        // we need to access the element in OnMouseMove
+        dragElement = target;
+
+        // tell our code to start moving the element with the mouse
+        document.onmousemove = OnMouseMove;
+        
+        // cancel out any text selections
+        document.body.focus();
+
+        // prevent text selection in IE
+        document.onselectstart = function () { return false; };
+        // prevent IE from trying to drag an image
+        target.ondragstart = function() { return false; };
+        
+        // prevent text selection (except IE)
+        return false;
+    }
+}
+
+function InitDragDrop()
+{
+    document.onmousedown = OnMouseDown;
+    document.onmouseup = OnMouseUp;
+}
+
+function OnMouseMove(e)
+{
+    if (e == null) 
+        var e = window.event; 
+
+    // this is the actual "drag code"
+
+    var parent = dragElement.parentNode;
+
+    var x = offsetX + e.clientX - startX;
+    var y = offsetY + e.clientY - startY;
+
+    if(x < 0)
+    	x = 0;
+
+    if(y < 0)
+    	y = 0;
+
+    if(x + dragElement.clientWidth > parent.clientWidth) 
+    	x = parent.clientWidth - dragElement.clientWidth;
+
+    if(y + dragElement.clientHeight > parent.clientHeight) 
+    	y = parent.clientHeight - dragElement.clientHeight;
+
+    dragElement.style.left = x + 'px';
+    dragElement.style.top = y + 'px';
+    
+    /*debug.innerHTML = '(' + dragElement.style.left + ', ' + 
+        dragElement.style.top + ')';   */
+}
+
+function OnMouseUp(e)
+{
+    if (dragElement != null)
+    {
+        dragElement.style.zIndex = oldZIndex;
+
+        // we're done with these events until the next OnMouseDown
+        document.onmousemove = null;
+        document.onselectstart = null;
+        dragElement.ondragstart = null;
+
+        // this is how we know we're not dragging      
+        dragElement = null;
+        
+        //debug.innerHTML = 'mouse up';
+    }
+}
+
+function ExtractNumber(value)
+{
+    var n = parseInt(value);
+	
+    return n == null || isNaN(n) ? 0 : n;
 }

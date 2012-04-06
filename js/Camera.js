@@ -35,14 +35,26 @@ function Camera() {
 		return this.distance.e(3);
 	}
 
-	this.transform = function(vector) {
+	this.transform = function(object) {
 		if(this.rotMatrix == null) {
 			this.rotMatrix = this.rotXMatrix.x(this.rotZMatrix);
 		}
 
-		var v = this.rotMatrix.x(vector);
-		v = v.add(this.distance);
-		var z = v.e(3);
-		return $V([v.e(1)/z, v.e(2)/z, z]);
+		var polygon = object.polygon;
+		var len = polygon.length;
+		var newPoly = new Array(len);
+		var meanDepth = 0;
+		var v;
+		var z;
+		for(var i = len; i--;) {
+			v = this.rotMatrix.x(polygon[i]);
+			v = v.add(this.distance);
+			z = v.e(3);
+			meanDepth += z;
+			newPoly[i] = $V([v.e(1)/z, v.e(2)/z, z]);
+		}
+
+		object.meanDepth /= len;
+		object.viewPolygon = newPoly;
 	}
 }
