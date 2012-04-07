@@ -172,14 +172,19 @@ function newPoint(data) {
 							parseFloat(data[7]),
 							parseFloat(data[8])
 						]),
-						normal
+						$V([
+							parseFloat(data[9]),
+							parseFloat(data[10]),
+							parseFloat(data[11])
+						])
 					];
 
+	point.normal = normal;
 	point.polygon = polygon;
 
-	var r = parseInt(data[3]);
-	var g = parseInt(data[4]);
-	var b = parseInt(data[5]);
+	var r = parseInt(data[12]);
+	var g = parseInt(data[13]);
+	var b = parseInt(data[14]);
 	point.color = [r, g, b];
 
 	points.push(point);
@@ -193,7 +198,8 @@ function logic() {
 	*/
 
 	if(cameraChanged) {
-		for(var i in points) {
+		var points = window.points;
+		for(var i = points.length; i--;) {
 			camera.transform(points[i]);
 		}
 		points.sort(DataPoint.compare);
@@ -206,10 +212,10 @@ function draw() {
 
 	mainContext.clearRect(-width/2, -height/2, width, height);
 
-
-	for(var i = 0; i < points.length; i++){
-		if(points[i].meanDepth > 0)
+	for(var i = points.length; i--;){
+		if(points[i].closestDepth > .01 && points[i].viewNormal.e(3) < 0) {
 			points[i].draw(mainContext);
+		}
 	}
 }
 

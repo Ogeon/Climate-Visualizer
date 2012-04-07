@@ -42,6 +42,13 @@ function toCartesian($lat, $lon, $latShift) {
 	return $vector;
 }
 
+function convertCoordinates($source, $dest, $name, $lonShift, $latShift) {
+	$lon = toRad($source[$name."lon"] - $lonShift - 90);
+	$lat = toRad($source[$name."lat"] + 90);
+	$dest[$name] = toCartesian($lat, $lon, $latShift);
+	return $dest;
+}
+
 header('Content-type: application/octet-stream');
 
 ob_start();
@@ -52,7 +59,7 @@ $file = fopen("data/temps.txt", "r");
 $regions = array();
 $readStatus = 0;
 
-while(!feof($file) && $readStatus < 6) {
+while(!feof($file) && $readStatus < 8) {
 	$parts = explode(" ", fgets($file));
 
 	$label = trim($parts[0]);
@@ -85,6 +92,16 @@ while(!feof($file) && $readStatus < 6) {
 	if($label == "URregLat") {
 		$readStatus++;
 		$regions = loadIntoArray($regions, "URlat", $parts);
+	}
+
+	if($label == "LRregLon") {
+		$readStatus++;
+		$regions = loadIntoArray($regions, "LRlon", $parts);
+	}
+
+	if($label == "LRregLat") {
+		$readStatus++;
+		$regions = loadIntoArray($regions, "LRlat", $parts);
 	}
 	
 }
@@ -119,19 +136,16 @@ $meanZ = 0;
 $maxZ = 0;
 foreach ($regions as $i => $value) {
 	//Normal
-	$lon = toRad($value["Nlon"] - $limitsLon[2] - 90);
-	$lat = toRad($value["Nlat"] + 90);
-	$regions[$i]["N"] = toCartesian($lat, $lon, $limitsLat[2]);
+	$regions[$i] = convertCoordinates($value, $regions[$i], "N", $limitsLon[2], $limitsLat[2]);
 
 	//Upper left
-	$lon = toRad($value["ULlon"] - $limitsLon[2] - 90);
-	$lat = toRad($value["ULlat"] + 90);
-	$regions[$i]["UL"] = toCartesian($lat, $lon, $limitsLat[2]);
+	$regions[$i] = convertCoordinates($value, $regions[$i], "UL", $limitsLon[2], $limitsLat[2]);
 
 	//Upper right
-	$lon = toRad($value["URlon"] - $limitsLon[2] - 90);
-	$lat = toRad($value["URlat"] + 90);
-	$regions[$i]["UR"] = toCartesian($lat, $lon, $limitsLat[2]);
+	$regions[$i] = convertCoordinates($value, $regions[$i], "UR", $limitsLon[2], $limitsLat[2]);
+
+	//Lower right
+	$regions[$i] = convertCoordinates($value, $regions[$i], "LR", $limitsLon[2], $limitsLat[2]);
 
 	//$meanZ += $centerPoints[$i]["z"];
 	$maxZ = min($maxZ, $regions[$i]["N"]["z"]);
@@ -160,6 +174,11 @@ foreach ($regions as $value) {
 	echo ($value["UR"]["x"]).";";
 	echo (-$value["UR"]["y"]).";";
 	echo ($value["UR"]["z"]-$maxZ).";";
+
+	//lower right
+	echo ($value["LR"]["x"]).";";
+	echo (-$value["LR"]["y"]).";";
+	echo ($value["LR"]["z"]-$maxZ).";";
 
 	echo (($color >> 16) & 0xFF).";";
 	echo (($color >> 8) & 0xFF).";";
