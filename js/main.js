@@ -28,6 +28,8 @@ var width = 1;
 var height = 1;
 var scale = 1;
 
+var mousePos = $V([0, 0, 0]);
+
 window.onload = function() {
 	window.mainCanvas = document.getElementById("mainCanvas");
 	window.camera.setLatitude(-Math.PI * 45/180);
@@ -103,6 +105,33 @@ window.onkeydown = function(event) {
 	}
 }
 
+document.onmousemove = trackMouse;
+
+function trackMouse(e) {
+	if(e == null)
+		e = window.event;
+
+	var x = e.clientX - width/2;
+	var y = e.clientY - height/2;
+
+	mousePos = $V([x, y, 0]);
+
+	var z = 100000000000000000000;
+	var dist = 100000000000000000000;
+
+	for(var i = points.length; i--;){
+		var d = points[i].centrum.x(scale).distanceFrom(mousePos);
+		if(d < dist) {
+			dist = d;
+			z = points[i].centrum.e(3);
+		}
+	}
+
+	mousePos = $V([mousePos.e(1), mousePos.e(2), z]);
+
+	draw();
+}
+
 function getData() {
     // Mozilla/Safari
     if (window.XMLHttpRequest) {
@@ -176,15 +205,20 @@ function newPoint(data) {
 							parseFloat(data[9]),
 							parseFloat(data[10]),
 							parseFloat(data[11])
+						]),
+						$V([
+							parseFloat(data[12]),
+							parseFloat(data[13]),
+							parseFloat(data[14])
 						])
 					];
 
 	point.normal = normal;
 	point.polygon = polygon;
 
-	var r = parseInt(data[12]);
-	var g = parseInt(data[13]);
-	var b = parseInt(data[14]);
+	var r = Math.round(parseInt(data[15])/2);
+	var g = Math.round(parseInt(data[16])/2);
+	var b = Math.round(parseInt(data[17])/2);
 	point.color = [r, g, b];
 
 	points.push(point);
@@ -209,13 +243,15 @@ function logic() {
 }
 
 function draw() {
-
 	mainContext.clearRect(-width/2, -height/2, width, height);
 
+	var p;
 	for(var i = points.length; i--;){
-		if(points[i].closestDepth > .01 && points[i].viewNormal.e(3) < 0) {
-			points[i].draw(mainContext);
-		}
+		p = points[i];
+		//if(p.viewNormal.dot(p.centrum) <= 0) {
+			p.draw(mainContext);
+		//}
+		p.drawData(mainContext, 300, [255, 255, 255], mousePos);
 	}
 }
 
@@ -355,7 +391,7 @@ function OnMouseUp(e)
         dragElement.style.zIndex = oldZIndex;
 
         // we're done with these events until the next OnMouseDown
-        document.onmousemove = null;
+        document.onmousemove = trackMouse;
         document.onselectstart = null;
         dragElement.ondragstart = null;
 

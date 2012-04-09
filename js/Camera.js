@@ -46,23 +46,25 @@ function Camera() {
 
 		object.viewNormal = this.normMatrix.x(object.normal);
 
-		if(object.viewNormal.e(3) > 0)
-			return;
-
 		var polygon = object.polygon;
 		var len = polygon.length;
 		var newPoly = new Array(len);
 		var closestDepth = -10000000000;
 		var v;
 		var z;
+
+		var centrum = $V([0, 0, 0]);
+
 		for(var i = len; i--;) {
 			v = m.x(polygon[i]);
 			z = v.e(3) + this.distance;
+			centrum = centrum.add($V([v.e(1)/len, v.e(2)/len, z/len]))
 			closestDepth = Math.max(closestDepth, z);
 			newPoly[i] = $V([v.e(1)/z, v.e(2)/z, z]);
 		}
 
-
+		var cZ = centrum.e(3);
+		object.centrum = $V([centrum.e(1)/cZ, centrum.e(2)/cZ, cZ]);
 		object.closestDepth = closestDepth;
 		object.viewPolygon = newPoly;
 	}

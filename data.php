@@ -59,7 +59,7 @@ $file = fopen("data/temps.txt", "r");
 $regions = array();
 $readStatus = 0;
 
-while(!feof($file) && $readStatus < 8) {
+while(!feof($file) && $readStatus < 10) {
 	$parts = explode(" ", fgets($file));
 
 	$label = trim($parts[0]);
@@ -103,6 +103,16 @@ while(!feof($file) && $readStatus < 8) {
 		$readStatus++;
 		$regions = loadIntoArray($regions, "LRlat", $parts);
 	}
+
+	if($label == "LLregLon") {
+		$readStatus++;
+		$regions = loadIntoArray($regions, "LLlon", $parts);
+	}
+
+	if($label == "LLregLat") {
+		$readStatus++;
+		$regions = loadIntoArray($regions, "LLlat", $parts);
+	}
 	
 }
 
@@ -128,10 +138,6 @@ foreach ($regions as $key => $value) {
 $limitsLon[2] /= sizeof($regions);
 $limitsLat[2] /= sizeof($regions);
 
-/*echo "<p>Min Lon: ".$limitsLon[0]."<br/>Max Lon: ".$limitsLon[1]."<br/>Mean Lon:".$limitsLon[2]."</p>";
-echo "<p>Min Lat: ".$limitsLat[0]."<br/>Max Lat: ".$limitsLat[1]."<br/>Mean Lat:".$limitsLat[2]."</p>";
-
-echo "<br />";*/
 $meanZ = 0;
 $maxZ = 0;
 foreach ($regions as $i => $value) {
@@ -146,6 +152,9 @@ foreach ($regions as $i => $value) {
 
 	//Lower right
 	$regions[$i] = convertCoordinates($value, $regions[$i], "LR", $limitsLon[2], $limitsLat[2]);
+
+	//Lower left
+	$regions[$i] = convertCoordinates($value, $regions[$i], "LL", $limitsLon[2], $limitsLat[2]);
 
 	//$meanZ += $centerPoints[$i]["z"];
 	$maxZ = min($maxZ, $regions[$i]["N"]["z"]);
@@ -168,17 +177,22 @@ foreach ($regions as $value) {
 	//upper left
 	echo ($value["UL"]["x"]).";";
 	echo (-$value["UL"]["y"]).";";
-	echo ($value["UL"]["z"]-$maxZ).";";
+	echo ($value["UL"]["z"]-$maxZ+.015).";";
 
 	//upper right
 	echo ($value["UR"]["x"]).";";
 	echo (-$value["UR"]["y"]).";";
-	echo ($value["UR"]["z"]-$maxZ).";";
+	echo ($value["UR"]["z"]-$maxZ+.015).";";
 
 	//lower right
 	echo ($value["LR"]["x"]).";";
 	echo (-$value["LR"]["y"]).";";
-	echo ($value["LR"]["z"]-$maxZ).";";
+	echo ($value["LR"]["z"]-$maxZ+.015).";";
+
+	//lower left
+	echo ($value["LL"]["x"]).";";
+	echo (-$value["LL"]["y"]).";";
+	echo ($value["LL"]["z"]-$maxZ+.015).";";
 
 	echo (($color >> 16) & 0xFF).";";
 	echo (($color >> 8) & 0xFF).";";

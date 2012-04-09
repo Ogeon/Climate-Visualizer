@@ -5,6 +5,7 @@ function Drawable() {
 	this.closestDepth = 0;
 	this.normal = $V([0, 0, 0]);
 	this.viewNormal = $V([0, 0, 0]);
+	this.centrum = $V([0, 0, 0]);
 
 	this.draw = function(context) {}
 
