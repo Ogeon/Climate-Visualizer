@@ -1,4 +1,5 @@
 function DataPoint() {
+	this.index = 0;
 
 	this.draw = function(context) {
 		var polygon = this.viewPolygon;
@@ -25,36 +26,28 @@ function DataPoint() {
 		if(z < .015)
 			return;
 
-		var baseAlpha = Math.min(0.4, Math.max(0.2, 1-1/z));
-		var alpha = Math.max(baseAlpha, Math.min(1, 100/mousePos.distanceFrom(start.x(scale))));
+		var v = Math.max(0, Math.min(1, value));
 
-		var end = this.viewNormal.x(value/(10000*z)).add(start);
+		var polygon = this.viewPolygon;
+		var len = polygon.length;
+		var newPolygon = new Array(len);
+		for(var i = len; i--;) {
+			newPolygon[i] = start.x(1-v).add(polygon[i].x(v));
+		}
 
-		//Stick
-		context.strokeStyle = "rgba(" + color[0] +
-								 ", " + color[1] +
-								 ", " + color[2] + 
-								 ", " + 0.7*alpha + ")";
-		context.beginPath();
-
-		context.moveTo(start.e(1) * scale, start.e(2) * scale);
-		context.lineTo(end.e(1) * scale, end.e(2) * scale);
-
-		context.closePath();
-		context.stroke();
-
-
-		//Ball
-		var size = scale*.0005/z;
-		if(size < 1.5)
-			return;
 		context.beginPath();
 
 		context.fillStyle = "rgba(" + color[0] +
 								 ", " + color[1] +
 								 ", " + color[2] + 
-								 ", " + alpha + ")";
-		context.arc(end.e(1) * scale, end.e(2) * scale, size, 0, Math.PI*2, true);
+								 ", " + .5 + ")";
+
+		if(len > 0)
+			context.moveTo(newPolygon[0].e(1)*scale, newPolygon[0].e(2)*scale);
+		for(var i = 1; i < len; i++) {
+			if(polygon[i].e(3) > .015)
+				context.lineTo(newPolygon[i].e(1)*scale, newPolygon[i].e(2)*scale);
+		}
 
 		context.closePath();
 		context.fill();

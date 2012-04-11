@@ -1,38 +1,135 @@
 body, html {
+	font-family: "Droid Sans", verdana, arial, sans-serif;
 	width:  100%;
 	height: 100%;
 	margin: 0px;
-	background-color: white;
-}
-
-canvas {
-	position: absolute;
-	left: 0;
-	top: 0;
-	margin: 0;
 	background-color: black;
+	color: #DDD;
+	font-size: 16px;
 }
 
-#bottomPanel {
-	position: absolute;
-	bottom: 0;
+td {
+	position: relative;
+	padding: 0px;
+}
+
+h1 {
+}
+
+a {
+	color: #ddd;
+	font-weight: bold;
+}
+
+a:hover {
+	font-weight: bold;
+	color: white;
+}
+
+.view {
+	margin: 0;
 	left: 0;
 	width: 100%;
-	background-color: white;
+	position: fixed;
+	text-align: center;
+	-webkit-transition: top 1s 0 ease-in-out;
+}
+
+.panel {
+	position: fixed;
+	left: 0;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	text-align: center;
+	opacity: 0;
+	padding: 3px;
+
+	-webkit-transition: bottom .3s 0 linear,
+						top .3s 0 linear,
+						opacity .3s 0 linear;
+}
+
+.view .textBody {
+	width: 500px;
+	text-align: left;
+	margin: auto;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 20px;
+	background-color: rgba(255, 255, 255, .2);
+}
+
+#mainCanvas {
+	top: 0;
+}
+
+#timeline {
+	bottom: -30px;
+	border-spacing: 5px;
+	padding: 0px;
+	-webkit-user-select: none;
+}
+
+#statusBar {
+	top: -30px;
+	-webkit-user-select: none;
 }
 
 #time-slide {
-	background-color: #DDD;
+	border: 1px solid #ddd;
 	height: 20px;
 	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	border-radius: 5px;
+	-webkit-user-select: none;
+}
+
+.button {
+	border: 1px solid #ddd;
+	height: 20px;
+	width: 20px;
+	position: absolute;
+	border-radius: 5px;
+	-webkit-user-select: none;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: rgba(255, 255, 255, .2);
 }
 
 #slider {
-	background-color: #333;
+	background-color: #ddd;
 	height: 100%;
-	width: 1%;
+	width: 100%;
+	border-radius: 4px;
 }
 
 .drag {
 	position: relative;
+	-webkit-user-select: none;
+}
+
+#menu {
+	position: fixed;
+	border: 1px solid #ddd;
+	border-left: none;
+	left: 0px;
+	top: 40px;
+	background-color: rgba(0, 0, 0, 0.7);
+	border-radius: 0 5px 5px 0;
+}
+
+#menu div {
+	width: 30px;
+	height: 30px;
+	margin: 5px;
+	cursor: pointer;
+	background-image: url(buttons.png);
+}
+
+#menu div:hover {
+	background-color: rgba(255, 255, 255, .2);
 }

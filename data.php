@@ -205,6 +205,31 @@ foreach ($regions as $value) {
 imagedestroy($texture);
 
 
+echo "T:";
+
+$counter = 0;
+
+while(!feof($file)) {
+	$parts = explode(" ", fgets($file));
+
+	foreach ($parts as $key => $value) {
+		$v = trim($value);
+		if($v == "")
+			continue;
+
+		echo $v;
+
+		if($key < sizeof($parts)-1)
+			echo ";";
+		else
+			echo ":";
+	}
+
+	$counter ++;
+
+	flush_buffers();
+	usleep(1);
+}
 
 fclose($file);
 ob_end_flush();

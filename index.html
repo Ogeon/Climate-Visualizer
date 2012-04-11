@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>Climate Visualizer</title>
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' 
+				rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="style.css">
 
 	<script type="text/javascript" src="js/Camera.js"></script>
@@ -12,13 +14,75 @@
 	
 </head>
 <body>
-	<canvas id="mainCanvas">
+	<canvas id="mainCanvas" class="view" >
 		<p>Your browser does not support canvas, which is required to view the
 			visualizations.</p>
 	</canvas>
-	<div id="bottomPanel">
-		<div id="time-text"></div>
-		<div id="time-slide"><div class="drag" id="slider"></div></div>
+
+	<div id="graphs" class="view" style="top: 100%;">
+		<h1>Graphs!</h1>
+	</div>
+
+	<div id="about" class="view" style="top: 200%;">
+		<h1>About Climate Visualizations</h1>
+		<div class="textBody">
+			<p>
+				This project is about visualizing future temperatures in Europe
+				according to SMHI. The data is simulated using a climate model
+				and	covers the years 2000-2100.
+			</p>
+
+			<p>
+				The purpose of this is not to be a scientific source or anything
+				similar. It is only for entertainment and for people to explore
+				the	predicted future climate changes and see how temperatures
+				changes	over time.
+			</p>
+
+			<p>
+				See
+				<a href="http://www.smhi.se/en/2.575/Climate-scenarios/climate-scenarios-1.6629">
+					climate scenario data download from SMHI
+				</a>
+				for more information about the dataset.
+			</p>
+
+			<h2>Map controls</h2>
+			<ul>
+				<li>Rotate left: Left arrow or A</li>
+				<li>Rotate right: Right arrow or D</li>
+				<li>Rotate up: Up arrow or W</li>
+				<li>Rotate down: Down arrow or S</li>
+				<li>Zoom in: Keypad+ or scroll up</li>
+				<li>Zoom out: Keypad- or scroll down</li>
+			</ul>
+		</div>
+	</div>
+
+
+	<table class="panel" id="timeline">
+		<tr>
+			<td style="width: 120px; position: relative;">
+				<div class="button" style="top: 0; left: 0;"
+						onmousedown="timeSpeed = -1;">&lt;</div>
+				<div id="time-text"></div>
+				<div class="button" style="top: 0; right: 0;"
+						onmousedown="timeSpeed = 1;">&gt;</div>
+			</td>
+			<td>
+				<div id="time-slide"><div class="drag" id="slider"></div></div>
+			</td>
+		</tr>
+	</table>
+
+	<div class="panel" id="statusBar">
+
+	</div>
+
+	<div id="menu">
+		<div onclick="setView(0);" ></div>
+		<div style="background-position-y: 60px;" onclick="setView(1);" ></div>
+		<div style="background-position-y: 30px;" onclick="setView(2);" ></div>
 	</div>
 </body>
 </html>
