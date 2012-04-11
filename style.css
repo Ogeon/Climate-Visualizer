@@ -30,9 +30,11 @@ a:hover {
 	margin: 0;
 	left: 0;
 	width: 100%;
+	height: 100%;
 	position: fixed;
 	text-align: center;
 	-webkit-transition: top 1s 0 ease-in-out;
+	overflow: auto;
 }
 
 .panel {
@@ -57,6 +59,18 @@ a:hover {
 	border-radius: 5px;
 	padding: 20px;
 	background-color: rgba(255, 255, 255, .2);
+}
+
+.textBody table {
+	border-collapse: collapse;
+}
+
+.textBody table td {
+	padding: 5px;
+}
+
+.view .textBody table tr:nth-child(even) {
+	background-color: #222;
 }
 
 #mainCanvas {
