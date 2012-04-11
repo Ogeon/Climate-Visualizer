@@ -58,6 +58,8 @@ var timeSpeed = 0;
 var graphView;
 var aboutView;
 
+var currentView = 0;
+
 window.onload = function() {
 	window.mainCanvas = document.getElementById("mainCanvas");
 	window.camera.setLatitude(-Math.PI * 45/180);
@@ -314,9 +316,12 @@ function newMonth(data) {
 		statusBar.style.top = "0px";
 		statusBar.style.opacity = "1";
 		document.getElementById("time-text").innerHTML = year + "-1";
-		timeline.style.bottom = "0px";
-		timeline.style.opacity = "1";
 
+		if(currentView == 0) {
+			timeline.style.bottom = "0px";
+			timeline.style.opacity = "1";
+		}
+		
 		currentTemperatures = temperatures[0];
 		draw();
 	}
@@ -614,4 +619,6 @@ function setView(index) {
 	mainCanvas.style.top = -100*index + "%";
 	graphView.style.top = (100 -100*index) + "%";
 	aboutView.style.top = (200 -100*index) + "%";
+
+	currentView = index;
 }
