@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 
 function flush_buffers(){
     while ( @ob_end_flush() ); // even if there is no nested output buffer
-		flush();
+	flush();
     ob_start();
 }
 

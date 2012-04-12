@@ -20,7 +20,8 @@
 	</canvas>
 
 	<div id="graphs" class="view" style="top: 100%;">
-		<h1>Graphs!</h1>
+		<h1>Here be graphs!</h1>
+		<p>...later.</p>
 	</div>
 
 	<div id="about" class="view" style="top: 200%;">
@@ -80,12 +81,14 @@
 
 	<table class="panel" id="timeline">
 		<tr>
-			<td style="width: 120px; position: relative;">
-				<div class="button" style="top: 0; left: 0;"
-						onmousedown="timeSpeed = -1;">&lt;</div>
-				<div id="time-text"></div>
-				<div class="button" style="top: 0; right: 0;"
-						onmousedown="timeSpeed = 1;">&gt;</div>
+			<td style="width: 120px; vertical-align: top;">
+				<div style="position: absolute; width: 120px;">
+					<div class="button" style="top: 0; left: 0;"
+							onmousedown="timeSpeed = -1;">&lt;</div>
+					<div id="time-text"></div>
+					<div class="button" style="top: 0; right: 0;"
+							onmousedown="timeSpeed = 1;">&gt;</div>
+				</div>
 			</td>
 			<td>
 				<div id="time-slide"><div class="drag" id="slider"></div></div>
@@ -99,8 +102,8 @@
 
 	<div id="menu">
 		<div onclick="setView(0);" ></div>
-		<div style="background-position-y: 60px;" onclick="setView(1);" ></div>
-		<div style="background-position-y: 30px;" onclick="setView(2);" ></div>
+		<div style="background-position: 0 -30px;" onclick="setView(1);" ></div>
+		<div style="background-position: 0 -60px;" onclick="setView(2);" ></div>
 	</div>
 </body>
 </html>
