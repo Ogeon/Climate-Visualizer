@@ -1,0 +1,799 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"curr",
+				"currentView"
+			],
+			[
+				"cli",
+				"clientHeight"
+			],
+			[
+				"li",
+				"li	Tag"
+			],
+			[
+				"mar",
+				"margin	margin: all"
+			],
+			[
+				"main",
+				"mainCanvas"
+			],
+			[
+				"time",
+				"timeline"
+			],
+			[
+				"ste",
+				"stepSize"
+			],
+			[
+				"pare",
+				"parentNode"
+			],
+			[
+				"in",
+				"index"
+			],
+			[
+				"to",
+				"top"
+			],
+			[
+				"client",
+				"clientWidth"
+			],
+			[
+				"te",
+				"temperatures"
+			],
+			[
+				"tem",
+				"temperatures"
+			],
+			[
+				"A",
+				"Array"
+			],
+			[
+				"tempera",
+				"temperatures"
+			],
+			[
+				"last",
+				"latestYear"
+			],
+			[
+				"y",
+				"year"
+			],
+			[
+				"parse",
+				"parseTemperatures"
+			],
+			[
+				"p",
+				"parts"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"po",
+				"polygon"
+			],
+			[
+				"requ",
+				"require_once"
+			],
+			[
+				"error",
+				"error_reporting"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"c",
+				"cZ"
+			],
+			[
+				"mouse",
+				"mousePos"
+			],
+			[
+				"v",
+				"var"
+			],
+			[
+				"mai",
+				"mainContext"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"ma",
+				"maxZ"
+			],
+			[
+				"d",
+				"DataPoint"
+			],
+			[
+				"Dat",
+				"DataPoint"
+			],
+			[
+				"be",
+				"break"
+			],
+			[
+				"came",
+				"cameraDistance"
+			],
+			[
+				"ca",
+				"camera"
+			],
+			[
+				"red",
+				"redrawScene"
+			],
+			[
+				"re",
+				"redrawScene"
+			],
+			[
+				"cam",
+				"cameraChanged"
+			],
+			[
+				"e",
+				"event"
+			],
+			[
+				"camera",
+				"cameraDistance"
+			],
+			[
+				"w",
+				"width"
+			],
+			[
+				"ro",
+				"rotMatrix"
+			],
+			[
+				"rot",
+				"rotZMatrix"
+			],
+			[
+				"dis",
+				"distance"
+			],
+			[
+				"lat",
+				"latitude"
+			],
+			[
+				"Ro",
+				"RotationX"
+			],
+			[
+				"Rot",
+				"RotationZ"
+			],
+			[
+				"lon",
+				"longitude"
+			],
+			[
+				"dr",
+				"draw"
+			],
+			[
+				"array",
+				"array"
+			],
+			[
+				"param",
+				"parameters"
+			],
+			[
+				"pa",
+				"param"
+			],
+			[
+				"exp",
+				"explode"
+			],
+			[
+				"rea",
+				"readline"
+			],
+			[
+				"dra",
+				"drawable"
+			],
+			[
+				"u",
+				"updatePerspective"
+			],
+			[
+				"lo",
+				"longitude"
+			],
+			[
+				"get",
+				"getDrawable"
+			],
+			[
+				"new",
+				"newPoint"
+			],
+			[
+				"map",
+				"mapLock"
+			],
+			[
+				"poi",
+				"points"
+			],
+			[
+				"pers",
+				"perspectiveWorker"
+			],
+			[
+				"tim",
+				"timeDiff"
+			],
+			[
+				"getScreen",
+				"getScreenPosition"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
+				"str",
+				"streamLoop"
+			],
+			[
+				"sub",
+				"substr"
+			],
+			[
+				"stre",
+				"streamPosition"
+			],
+			[
+				"wheel",
+				"wheelData"
+			],
+			[
+				"rta",
+				"rotateX"
+			],
+			[
+				"tran",
+				"translateVector"
+			],
+			[
+				"sc",
+				"scale"
+			],
+			[
+				"sca",
+				"scaleVector"
+			],
+			[
+				"tex",
+				"texY"
+			],
+			[
+				"canva",
+				"mainCanvas"
+			],
+			[
+				"lim",
+				"limitsLon"
+			],
+			[
+				"isa",
+				"is_array"
+			],
+			[
+				"fo",
+				"foreach	foreach …"
+			],
+			[
+				"cen",
+				"centerPoints"
+			],
+			[
+				"lpadl",
+				"lpadl"
+			],
+			[
+				"pad",
+				"paddleSize"
+			],
+			[
+				"sp",
+				"spdx"
+			],
+			[
+				"the",
+				"theImage"
+			],
+			[
+				"ge",
+				"getElementById"
+			],
+			[
+				"pd",
+				"padding	padding-bottom: length"
+			],
+			[
+				"cont",
+				"content"
+			],
+			[
+				"pro",
+				"proverb"
+			],
+			[
+				"la",
+				"labels"
+			],
+			[
+				"z",
+				"z-index"
+			],
+			[
+				"polaroidO",
+				"polaroidOffsetSpeed"
+			],
+			[
+				"polaro",
+				"polaroidOffsetSpeed"
+			],
+			[
+				"se",
+				"setY"
+			],
+			[
+				"pol",
+				"polaroids"
+			],
+			[
+				"mo",
+				"mousewheel"
+			],
+			[
+				"move",
+				"movePolaroidsLeft"
+			],
+			[
+				"whee",
+				"wheelData"
+			],
+			[
+				"flu",
+				"flush_buffers"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"upd",
+				"updateWindowSize"
+			],
+			[
+				"di",
+				"display	display: block"
+			],
+			[
+				"bor",
+				"border	border: size style color"
+			],
+			[
+				"back",
+				"background	background-color: hex"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"scr",
+				"scrollOffset"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "js/main.js",
+			"settings":
+			{
+				"buffer_size": 14709,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<?\nini_set('display_errors','On');\nerror_reporting(E_ALL);\n\nfunction flush_buffers(){\n    while ( @ob_end_flush() ); // even if there is no nested output buffer\n	flush();\n    ob_start();\n}\n\nfunction loadIntoArray($array, $key, $data) {\n	$a = $array;\n	$index = 0;\n	foreach ($data as $value) {\n		while(sizeof($a) < $index+1)\n			$a[] = array();\n		$v = trim($value);\n		if($v != \"\" && is_numeric($v)) {\n			$a[$index][$key] = $v;\n			$index++;\n		}\n\n	}\n\n	return $a;\n}\n\nfunction toRad($deg) {\n	return 2*pi()*$deg/360;\n}\n\nfunction toCartesian($lat, $lon, $latShift) {\n	$x = cos($lon)*sin($lat);\n	$y = sin($lon)*sin($lat);\n	$z = cos($lat);\n\n	$a = toRad(90 - $latShift);\n	$vector = array();\n	$vector[\"x\"] = $x;\n	$vector[\"y\"] = $y*cos($a) - $z*sin($a);\n	$vector[\"z\"] = $y*sin($a) + $z*cos($a);\n	return $vector;\n}\n\nfunction convertCoordinates($source, $dest, $name, $lonShift, $latShift) {\n	$lon = toRad($source[$name.\"lon\"] - $lonShift - 90);\n	$lat = toRad($source[$name.\"lat\"] + 90);\n	$dest[$name] = toCartesian($lat, $lon, $latShift);\n	return $dest;\n}\n\nheader('Content-type: application/octet-stream');\n\nob_start();\n\n$file = fopen(\"data/temps.txt\", \"r\");\n\n$regions = array();\n$readStatus = 0;\n\nwhile(!feof($file) && $readStatus < 10) {\n	$parts = explode(\" \", fgets($file));\n\n	$label = trim($parts[0]);\n\n	if($label == \"CPregLon\") {\n		$readStatus++;\n		$regions = loadIntoArray($regions, \"Nlon\", $parts);\n	}\n\n	if($label == \"CPregLat\") {\n		$readStatus++;\n		$regions = loadIntoArray($regions, \"Nlat\", $parts);\n	}\n\n	if($label == \"ULregLon\") {\n		$readStatus++;\n		$regions = loadIntoArray($regions, \"ULlon\", $parts);\n	}\n\n	if($label == \"ULregLat\") {\n		$readStatus++;\n		$regions = loadIntoArray($regions, \"ULlat\", $parts);\n	}\n\n	if($label == \"URregLon\") {\n		$readStatus++;\n		$regions = loadIntoArray($regions, \"URlon\", $parts);\n	}\n\n	if($label == \"URregLat\") {\n		$readStatus++;\n		$regions = loadIntoArray($regions, \"URlat\", $parts);\n	}\n\n	if($label == \"LRregLon\") {\n		$readStatus++;\n		$regions = loadIntoArray($regions, \"LRlon\", $parts);\n	}\n\n	if($label == \"LRregLat\") {\n		$readStatus++;\n		$regions = loadIntoArray($regions, \"LRlat\", $parts);\n	}\n\n	if($label == \"LLregLon\") {\n		$readStatus++;\n		$regions = loadIntoArray($regions, \"LLlon\", $parts);\n	}\n\n	if($label == \"LLregLat\") {\n		$readStatus++;\n		$regions = loadIntoArray($regions, \"LLlat\", $parts);\n	}\n	\n}\n\n$limitsLon = array(INF, -INF, 0);\n$limitsLat = array(INF, -INF, 0);\n\nforeach ($regions as $key => $value) {\n	//echo \"<p>Point $key:<br/>\";\n	$limitsLon[0] = min($limitsLon[0], $value[\"Nlon\"]);\n	$limitsLon[1] = max($limitsLon[1], $value[\"Nlon\"]);\n	$limitsLon[2] += $value[\"Nlon\"];\n\n	$limitsLat[0] = min($limitsLat[0], $value[\"Nlat\"]);\n	$limitsLat[1] = max($limitsLat[1], $value[\"Nlat\"]);\n	$limitsLat[2] += $value[\"Nlat\"];\n\n	/*foreach ($value as $key => $value) {\n		echo \"&nbsp;&nbsp;&nbsp;$key => $value<br/>\";\n	}\n	echo \"</p>\";*/\n}\n\n$limitsLon[2] /= sizeof($regions);\n$limitsLat[2] /= sizeof($regions);\n\n$meanZ = 0;\n$maxZ = 0;\nforeach ($regions as $i => $value) {\n	//Normal\n	$regions[$i] = convertCoordinates($value, $regions[$i], \"N\", $limitsLon[2], $limitsLat[2]);\n\n	//Upper left\n	$regions[$i] = convertCoordinates($value, $regions[$i], \"UL\", $limitsLon[2], $limitsLat[2]);\n\n	//Upper right\n	$regions[$i] = convertCoordinates($value, $regions[$i], \"UR\", $limitsLon[2], $limitsLat[2]);\n\n	//Lower right\n	$regions[$i] = convertCoordinates($value, $regions[$i], \"LR\", $limitsLon[2], $limitsLat[2]);\n\n	//Lower left\n	$regions[$i] = convertCoordinates($value, $regions[$i], \"LL\", $limitsLon[2], $limitsLat[2]);\n\n	//$meanZ += $centerPoints[$i][\"z\"];\n	$maxZ = min($maxZ, $regions[$i][\"N\"][\"z\"]);\n}\n//$meanZ /= sizeof($centerPoints);\n\n$texture = imagecreatefromjpeg(\"data/earth.jpg\");\n$width = imagesx($texture);\n$height = imagesy($texture);\nforeach ($regions as $value) {\n	$texX = $width*$value[\"Nlon\"]/360 + $width/2;\n	$texY = -$height*$value[\"Nlat\"]/180 + $height/2;\n	$color = imagecolorat($texture, $texX, $texY);\n\n	//normals\n	echo ($value[\"N\"][\"x\"]).\";\";\n	echo (-$value[\"N\"][\"y\"]).\";\";\n	echo ($value[\"N\"][\"z\"]).\";\";\n\n	//upper left\n	echo ($value[\"UL\"][\"x\"]).\";\";\n	echo (-$value[\"UL\"][\"y\"]).\";\";\n	echo ($value[\"UL\"][\"z\"]-$maxZ+.015).\";\";\n\n	//upper right\n	echo ($value[\"UR\"][\"x\"]).\";\";\n	echo (-$value[\"UR\"][\"y\"]).\";\";\n	echo ($value[\"UR\"][\"z\"]-$maxZ+.015).\";\";\n\n	//lower right\n	echo ($value[\"LR\"][\"x\"]).\";\";\n	echo (-$value[\"LR\"][\"y\"]).\";\";\n	echo ($value[\"LR\"][\"z\"]-$maxZ+.015).\";\";\n\n	//lower left\n	echo ($value[\"LL\"][\"x\"]).\";\";\n	echo (-$value[\"LL\"][\"y\"]).\";\";\n	echo ($value[\"LL\"][\"z\"]-$maxZ+.015).\";\";\n\n	echo (($color >> 16) & 0xFF).\";\";\n	echo (($color >> 8) & 0xFF).\";\";\n	echo ($color & 0xFF).\":\";\n\n	flush_buffers();\n	usleep(1);\n}\n\nimagedestroy($texture);\n\n\necho \"T:\";\n\n$counter = 0;\n\nwhile(!feof($file)) {\n	$parts = explode(\" \", fgets($file));\n\n	foreach ($parts as $key => $value) {\n		$v = trim($value);\n		if($v == \"\")\n			continue;\n\n		echo $v;\n\n		if($key < sizeof($parts)-1)\n			echo \";\";\n		else\n			echo \":\";\n	}\n\n	$counter ++;\n\n	flush_buffers();\n	usleep(1);\n}\n\nfclose($file);\nob_end_flush();\n?>",
+			"file": "data.php",
+			"file_size": 5019,
+			"file_write_time": 1334267584000000,
+			"settings":
+			{
+				"buffer_size": 5019,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 2869,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/DataPoint.js",
+			"settings":
+			{
+				"buffer_size": 1473,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "style.css",
+			"settings":
+			{
+				"buffer_size": 2095,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/User/scons.sublime-build",
+	"command_palette":
+	{
+		"height": 138.0,
+		"selected_items":
+		[
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"gi",
+				"Git: Gitk"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/ogeon/.gvfs/FTP som ogeon.se på ogeon.se/climate/data.php",
+		"/web/temperatures/js/DataPoint.js",
+		"/home/ogeon/Dropbox/webbteknik/lab3/main.js",
+		"/web/DBT---Coffeescreen/services/Service.php",
+		"/web/DBT---Coffeescreen/services/TestService/service.php",
+		"/web/temperatures/index.html",
+		"/web/temperatures/README.rst",
+		"/web/temperatures/data.php",
+		"/web/temperatures/Drawable.js",
+		"/web/temperatures/DataPoint.js",
+		"/web/temperatures/main.js",
+		"/web/temperatures/Camera.js",
+		"/web/temperatures/data2.php",
+		"/web/temperatures/perspective.js",
+		"/home/ogeon/Dropbox/webbteknik/lab1/poster/html5/sources.htm",
+		"/home/ogeon/Dropbox/webbteknik/lab1/poster/html5/main.css",
+		"/home/ogeon/Dropbox/webbteknik/lab1/poster/html5/template.htm",
+		"/home/ogeon/Dropbox/webbteknik/lab1/poster/html5/cast.htm",
+		"/home/ogeon/Dropbox/webbteknik/lab1/poster/html5/index.htm",
+		"/home/ogeon/Dropbox/webbteknik/lab1/poster/clock.js",
+		"/home/ogeon/Dropbox/webbteknik/lab3/Pong/pingpong.js",
+		"/home/ogeon/.gvfs/FTP som ogeon.se på ogeon.se/new/fonts/fonts.css",
+		"/home/ogeon/Skrivbord/Pong/pingpong.js",
+		"/home/ogeon/.cache/.fr-9qHxRM/Pong/pingpong.js",
+		"/home/ogeon/.cache/.fr-8pOEKh/Pong/Pong.html",
+		"/home/ogeon/Galaxy-2/src/Client/network.h",
+		"/home/ogeon/Galaxy-2/src/Client/client.cpp",
+		"/home/ogeon/Skrivbord/test.html",
+		"/home/ogeon/Galaxy-2/src/Shared/SConscript",
+		"/home/ogeon/Galaxy-2/src/Client/SConscript",
+		"/home/ogeon/Galaxy-2/src/Server/SConscript",
+		"/home/ogeon/Galaxy-2/SConscript",
+		"/home/ogeon/Galaxy-2/.git/info/exclude",
+		"/home/ogeon/Galaxy-2/build/src/Client/client",
+		"/home/ogeon/Galaxy-2/galaxy-2.sublime-project",
+		"/home/ogeon/.config/sublime-text-2/Packages/User/scons.sublime-build",
+		"/home/ogeon/Galaxy-2/client.cpp",
+		"/home/ogeon/Galaxy-2/SConstruct",
+		"/home/ogeon/Galaxy-2/src/Server/player.cpp",
+		"/home/ogeon/Galaxy-2/src/Server/network.cpp",
+		"/home/ogeon/Galaxy-2/src/Server/asdf.cppx",
+		"/home/ogeon/Galaxy-2/src/Client/physics.cpp",
+		"/home/ogeon/Galaxy-2/README",
+		"/home/ogeon/Hämtningar/ENSEMBLES_SMHIRCA30_A1B_ECHAM5-r3_MM_50km_200001-210012_tas.txt",
+		"/web/interaktion.nu/Albin - startup/js/parallax/README.html",
+		"/web/temperatures/php-netcdf/EXPERIMENTAL",
+		"/web/temperatures/php-netcdf/tests/001.phpt",
+		"/home/ogeon/Dropbox/interaktion-source/Albin - startup/js/parallax/Parallax.js",
+		"/home/ogeon/Dropbox/interaktion-source/Albin - startup/js/parallax/ElementUtils.js",
+		"/home/ogeon/Dropbox/interaktion-source/Albin - startup/js/parallax/ParallaxSection.js",
+		"/home/ogeon/Dropbox/interaktion-source/Albin - startup/js/parallax/readme-style.css",
+		"/home/ogeon/Dropbox/interaktion-source/Albin - startup/js/parallax/README.html",
+		"/home/ogeon/Dropbox/interaktion-source/Albin - startup/js/parallax/highlight/test.html",
+		"/home/ogeon/Dropbox/interaktion-source/Albin - startup/js/scriptIncluder.php",
+		"/home/ogeon/Dropbox/interaktion-source/Albin - startup/js/parallax/README",
+		"/home/ogeon/Dropbox/interaktion-source/Albin - startup/hem/index.php",
+		"/home/ogeon/Dropbox/interaktion-source/Albin - startup/js/parallax/main.js",
+		"/home/ogeon/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/ogeon/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"setCurrentMonth",
+			"document.getElementById(\"slider\")",
+			"document.elementById(\"slider\")",
+			"80px",
+			"1000",
+			"phase"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "js/main.js",
+					"settings":
+					{
+						"buffer_size": 14709,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4541,
+								4507
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2856.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "data.php",
+					"settings":
+					{
+						"buffer_size": 5019,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1104,
+								1104
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 306.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "index.html",
+					"settings":
+					{
+						"buffer_size": 2869,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2183,
+								2183
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 68.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "js/DataPoint.js",
+					"settings":
+					{
+						"buffer_size": 1473,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1092,
+								1092
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 153.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "style.css",
+					"settings":
+					{
+						"buffer_size": 2095,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								471,
+								471
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 172.0,
+	"status_bar_visible": true
+}
