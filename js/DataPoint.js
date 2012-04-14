@@ -21,7 +21,7 @@ function DataPoint() {
 	}
 
 	this.drawData = function(context, value, color, mousePos) {
-		var start = this.centrum;
+		var start = this.viewCentrum;
 		var z = start.e(3);
 		if(z < .015)
 			return;

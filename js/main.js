@@ -90,15 +90,16 @@ window.onload = function() {
 InitDragDrop();
 
 window.onresize = function() {
-	window.width = mainCanvas.parentNode.clientWidth;
-	window.height = mainCanvas.parentNode.clientHeight;
-	window.mainCanvas.width = width;
-	window.mainCanvas.height = height;
-	window.mainContext.translate(width/2, height/2);
-	window.scale = Math.min(width/2, height/2)/Math.tan(Math.PI*30/180);
-	window.draw();
-
-	menu.style.top = Math.round((height - menu.clientHeight)/2) + "px";
+	if(mainCanvas != null) {
+		window.width = mainCanvas.parentNode.clientWidth;
+		window.height = mainCanvas.parentNode.clientHeight;
+		window.mainCanvas.width = width;
+		window.mainCanvas.height = height;
+		window.mainContext.translate(width/2, height/2);
+		window.scale = Math.min(width/2, height/2)/Math.tan(Math.PI*30/180);
+		window.draw();
+		menu.style.top = Math.round((height - menu.clientHeight)/2) + "px";
+	}
 }
 
 window.onkeydown = function(event) {
@@ -245,7 +246,7 @@ function parseData(text) {
 function newPoint(data) {
 	var point = new DataPoint();
 
-	var normal = $V([
+	var centrum = $V([
 						parseFloat(data[0]),
 						parseFloat(data[1]),
 						parseFloat(data[2])
@@ -274,7 +275,7 @@ function newPoint(data) {
 						])
 					];
 
-	point.normal = normal;
+	point.centrum = centrum;
 	point.polygon = polygon;
 
 	var r = Math.round(parseInt(data[15])/2);

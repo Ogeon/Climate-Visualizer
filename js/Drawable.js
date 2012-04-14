@@ -3,9 +3,8 @@ function Drawable() {
 	this.polygon = new Array();
 	this.viewPolygon = new Array();
 	this.closestDepth = 0;
-	this.normal = $V([0, 0, 0]);
-	this.viewNormal = $V([0, 0, 0]);
 	this.centrum = $V([0, 0, 0]);
+	this.viewCentrum = $V([0, 0, 0]);
 
 	this.draw = function(context) {}
 

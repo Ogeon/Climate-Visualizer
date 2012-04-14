@@ -6,7 +6,6 @@ function Camera() {
 	this.rotZMatrix = Matrix.RotationZ(0);
 	this.rotXMatrix = Matrix.RotationX(0);
 	this.rotMatrix = null;
-	this.normMatrix = null;
 
 	this.setLongitude = function(lon) {
 		this.longitude = lon;
@@ -39,12 +38,9 @@ function Camera() {
 	this.transform = function(object) {
 		if(this.rotMatrix == null) {
 			this.rotMatrix = this.rotXMatrix.x(this.rotZMatrix);
-			this.normMatrix = this.rotMatrix.transpose().inv();
 		}
 
 		var m = this.rotMatrix;
-
-		object.viewNormal = this.normMatrix.x(object.normal);
 
 		var polygon = object.polygon;
 		var len = polygon.length;
@@ -53,18 +49,17 @@ function Camera() {
 		var v;
 		var z;
 
-		var centrum = $V([0, 0, 0]);
-
 		for(var i = len; i--;) {
 			v = m.x(polygon[i]);
 			z = v.e(3) + this.distance;
-			centrum = centrum.add($V([v.e(1)/len, v.e(2)/len, z/len]))
 			closestDepth = Math.max(closestDepth, z);
 			newPoly[i] = $V([v.e(1)/z, v.e(2)/z, z]);
 		}
 
-		var cZ = centrum.e(3);
-		object.centrum = $V([centrum.e(1)/cZ, centrum.e(2)/cZ, cZ]);
+		v = m.x(object.centrum);
+		z = v.e(3) + this.distance;
+		object.viewCentrum = $V([v.e(1)/z, v.e(2)/z, z]);
+
 		object.closestDepth = closestDepth;
 		object.viewPolygon = newPoly;
 	}
