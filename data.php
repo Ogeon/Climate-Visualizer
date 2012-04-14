@@ -52,6 +52,7 @@ function convertCoordinates($source, $dest, $name, $lonShift, $latShift) {
 header('Content-type: application/octet-stream');
 
 ob_start();
+set_time_limit(0); //Can be removed if not allowed
 
 $file = fopen("data/temps.txt", "r");
 
@@ -65,12 +66,12 @@ while(!feof($file) && $readStatus < 10) {
 
 	if($label == "CPregLon") {
 		$readStatus++;
-		$regions = loadIntoArray($regions, "Nlon", $parts);
+		$regions = loadIntoArray($regions, "Clon", $parts);
 	}
 
 	if($label == "CPregLat") {
 		$readStatus++;
-		$regions = loadIntoArray($regions, "Nlat", $parts);
+		$regions = loadIntoArray($regions, "Clat", $parts);
 	}
 
 	if($label == "ULregLon") {
@@ -120,13 +121,13 @@ $limitsLat = array(INF, -INF, 0);
 
 foreach ($regions as $key => $value) {
 	//echo "<p>Point $key:<br/>";
-	$limitsLon[0] = min($limitsLon[0], $value["Nlon"]);
-	$limitsLon[1] = max($limitsLon[1], $value["Nlon"]);
-	$limitsLon[2] += $value["Nlon"];
+	$limitsLon[0] = min($limitsLon[0], $value["Clon"]);
+	$limitsLon[1] = max($limitsLon[1], $value["Clon"]);
+	$limitsLon[2] += $value["Clon"];
 
-	$limitsLat[0] = min($limitsLat[0], $value["Nlat"]);
-	$limitsLat[1] = max($limitsLat[1], $value["Nlat"]);
-	$limitsLat[2] += $value["Nlat"];
+	$limitsLat[0] = min($limitsLat[0], $value["Clat"]);
+	$limitsLat[1] = max($limitsLat[1], $value["Clat"]);
+	$limitsLat[2] += $value["Clat"];
 
 	/*foreach ($value as $key => $value) {
 		echo "&nbsp;&nbsp;&nbsp;$key => $value<br/>";
@@ -141,7 +142,7 @@ $meanZ = 0;
 $maxZ = 0;
 foreach ($regions as $i => $value) {
 	//Normal
-	$regions[$i] = convertCoordinates($value, $regions[$i], "N", $limitsLon[2], $limitsLat[2]);
+	$regions[$i] = convertCoordinates($value, $regions[$i], "C", $limitsLon[2], $limitsLat[2]);
 
 	//Upper left
 	$regions[$i] = convertCoordinates($value, $regions[$i], "UL", $limitsLon[2], $limitsLat[2]);
@@ -156,7 +157,7 @@ foreach ($regions as $i => $value) {
 	$regions[$i] = convertCoordinates($value, $regions[$i], "LL", $limitsLon[2], $limitsLat[2]);
 
 	//$meanZ += $centerPoints[$i]["z"];
-	$maxZ = min($maxZ, $regions[$i]["N"]["z"]);
+	$maxZ = min($maxZ, $regions[$i]["C"]["z"]);
 }
 //$meanZ /= sizeof($centerPoints);
 
@@ -164,14 +165,14 @@ $texture = imagecreatefromjpeg("data/earth.jpg");
 $width = imagesx($texture);
 $height = imagesy($texture);
 foreach ($regions as $value) {
-	$texX = $width*$value["Nlon"]/360 + $width/2;
-	$texY = -$height*$value["Nlat"]/180 + $height/2;
+	$texX = $width*$value["Clon"]/360 + $width/2;
+	$texY = -$height*$value["Clat"]/180 + $height/2;
 	$color = imagecolorat($texture, $texX, $texY);
 
-	//normals
-	echo ($value["N"]["x"]).";";
-	echo (-$value["N"]["y"]).";";
-	echo ($value["N"]["z"]).";";
+	//centers
+	echo ($value["C"]["x"]).";";
+	echo (-$value["C"]["y"]).";";
+	echo ($value["C"]["z"]-$maxZ+.015).";";
 
 	//upper left
 	echo ($value["UL"]["x"]).";";
