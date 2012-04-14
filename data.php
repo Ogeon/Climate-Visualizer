@@ -52,7 +52,7 @@ function convertCoordinates($source, $dest, $name, $lonShift, $latShift) {
 header('Content-type: application/octet-stream');
 
 ob_start();
-set_time_limit(0); //Can be removed if not allowed
+set_time_limit(0); //Can be removed if not allowed by the server
 
 $file = fopen("data/temps.txt", "r");
 

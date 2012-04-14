@@ -218,7 +218,7 @@ function getquerystring() {
 
 function parseData(text) {
 	var chunks = text.split(":");
-	for(var n in chunks) {
+	for(var n = 0, len = chunks.length; i < len; i++) {
 		if(!parseTemperatures) {
 			if(chunks[n] == "T") {
 				cameraChanged = true;
