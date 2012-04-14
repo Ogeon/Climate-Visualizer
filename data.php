@@ -52,7 +52,6 @@ function convertCoordinates($source, $dest, $name, $lonShift, $latShift) {
 header('Content-type: application/octet-stream');
 
 ob_start();
-set_time_limit(0);
 
 $file = fopen("data/temps.txt", "r");
 
